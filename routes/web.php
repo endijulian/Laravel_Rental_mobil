@@ -33,25 +33,30 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/setting', 'HomeController@setting');
     Route::post('/setting', 'HomeController@updateSetting');
     
-    Route::get('/produk', 'ProdukController@index');
-    Route::get('/produk/tambah', 'ProdukController@tambah');
-    Route::post('/produk', 'ProdukController@simpan');
-    Route::put('/produk/{id}', 'ProdukController@update');
-    Route::get('/produk/{id}', 'ProdukController@edit');
-    Route::get('/produkharga/{id}', 'ProdukController@formharga');
-    Route::put('/produkharga/{id}', 'ProdukController@tambahharga');
-    Route::delete('/produk/{id}', 'ProdukController@hapus');
-    Route::delete('/produkharga/{id}', 'ProdukController@hapusHarga');
+    Route::group(['middleware' => 'permission:produk_show'], function () {
+        Route::get('/produk', 'ProdukController@index');
+        Route::get('/produk/tambah', 'ProdukController@tambah')->middleware('permission:produk_add');
+        Route::post('/produk', 'ProdukController@simpan');
+        Route::put('/produk/{id}', 'ProdukController@update')->middleware('permission:produk_edit');
+        Route::get('/produk/{id}', 'ProdukController@edit');
+        Route::get('/produkharga/{id}', 'ProdukController@formharga');
+        Route::put('/produkharga/{id}', 'ProdukController@tambahharga');
+        Route::delete('/produk/{id}', 'ProdukController@hapus')->middleware('permission:produk_delete');;
+        Route::delete('/produkharga/{id}', 'ProdukController@hapusHarga');
+    });
    
-    Route::get('/form-transaksi', 'TransaksiController@formTransaksi');
-    Route::get('/transaksi', 'TransaksiController@index');
-    Route::post('/transaksi', 'TransaksiController@saveTransaksi');
-    Route::get('/transaksi/{id}', 'TransaksiController@detailTransaksi');
-    Route::get('/transaksi/proses/{id}', 'TransaksiController@prosesTransaksi');
-    Route::get('/transaksi/pengembalian/{id}', 'TransaksiController@prosesPengembalian');
-    Route::get('/transaksi/pembatalan/{id}', 'TransaksiController@prosesPembatalan');
-    Route::get('/transaksi/print/{id}', 'TransaksiController@printTransaksi');
-    Route::delete('/transaksi/hapus/{id}', 'TransaksiController@hapusTransaksi');
+    Route::group(['middleware' => 'permission:transaksi_show'], function () {
+        Route::get('/transaksi', 'TransaksiController@index');
+        Route::post('/transaksi', 'TransaksiController@saveTransaksi');
+        Route::get('/transaksi/{id}', 'TransaksiController@detailTransaksi');
+        Route::get('/transaksi/proses/{id}', 'TransaksiController@prosesTransaksi');
+        Route::get('/transaksi/pengembalian/{id}', 'TransaksiController@prosesPengembalian');
+        Route::get('/transaksi/pembatalan/{id}', 'TransaksiController@prosesPembatalan');
+        Route::get('/transaksi/print/{id}', 'TransaksiController@printTransaksi');
+        Route::delete('/transaksi/hapus/{id}', 'TransaksiController@hapusTransaksi');
+    });
+
+    Route::get('/form-transaksi', 'TransaksiController@formTransaksi')->middleware('can:transaksi_add');
     
     Route::get('/laporan', 'LaporanController@index');
     Route::post('/laporan', 'LaporanController@generatePDF');

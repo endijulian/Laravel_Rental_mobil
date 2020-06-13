@@ -52,46 +52,56 @@
         Interface
       </div>
 
-      <li class="nav-item">
-        <a class="nav-link" href={{ url('/admin/produk')}}>
-          <i class="fas fa-fw fa-table"></i>
-          <span>Produk </span></a>
-      </li>
+      @can('produk_show')
+        <li class="nav-item">
+            <a class="nav-link" href={{ url('/admin/produk')}}>
+            <i class="fas fa-fw fa-table"></i>
+            <span>Produk </span></a>
+        </li>
+      @endcan
 
-      <li class="nav-item">
-        <a class="nav-link" href={{ url('/admin/form-transaksi')}}>
-          <i class="fas fa-fw fa-table"></i>
-          <span>Form Transaksi </span></a>
-      </li>
+      @can('transaksi_show')
+            <li class="nav-item">
+                <a class="nav-link" href={{ url('/admin/form-transaksi')}}>
+                <i class="fas fa-fw fa-table"></i>
+                <span>Form Transaksi </span></a>
+            </li>
+      @endcan
 
+      @can('transaksi_show')
       <li class="nav-item">
         <a class="nav-link" href={{ url('/admin/transaksi')}}>
           <i class="fas fa-fw fa-table"></i>
           <span> Transaksi </span></a>
       </li>
+      @endcan
       
+      @can('laporan_show')
+        <li class="nav-item">
+            <a class="nav-link" href={{ url('/admin/laporan')}}>
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Laporan </span></a>
+        </li>
+      @endcan
+
+
+      @can('user_show')
+            <li class="nav-item">
+                <a class="nav-link" href={{ url('/admin/user')}}>
+                <i class="fas fa-fw fa-table"></i>
+                <span>Manajemen User</span></a>
+            </li>
+      @endcan
+
+      @can('role_show')
       <li class="nav-item">
-        <a class="nav-link" href={{ url('/admin/laporan')}}>
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Laporan </span></a>
+            <a class="nav-link" href={{ url('/admin/role')}}>
+            <i class="fas fa-fw fa-table"></i>
+            <span>Manajemen Role</span></a>
       </li>
-
-
-      <li class="nav-item">
-        <a class="nav-link" href={{ url('/admin/user')}}>
-          <i class="fas fa-fw fa-table"></i>
-          <span>Manajemen User</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href={{ url('/admin/role')}}>
-          <i class="fas fa-fw fa-table"></i>
-          <span>Manajemen Role</span></a>
-      </li>
-
+      @endcan
 
       <hr class="sidebar-divider d-none d-md-block">
-
 
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

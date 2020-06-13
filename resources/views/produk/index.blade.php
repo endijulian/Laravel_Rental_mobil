@@ -10,9 +10,10 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Kelola Produk</h1>
-          <a href="{{ url('admin/produk/tambah')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file fa-sm text-white-50"></i> Tambah Produk</a>
+            @can('produk_add')
+                <a href="{{ url('admin/produk/tambah')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file fa-sm text-white-50"></i> Tambah Produk</a>
+            @endcan
           </div>
-
           <!-- Content Row -->
           <div class="row">
            
@@ -60,9 +61,15 @@
                                 <form action="{{url('admin/produk/'. $p->id)}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <a href='{{url("admin/produkharga/". $p->id)}}' class="btn btn-info btn-sm">Atur Harga</a>
-                                    <a href="{{url('admin/produk/'. $p->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                                    @can('produk_edit')
+                                        <a href='{{url("admin/produkharga/". $p->id)}}' class="btn btn-info btn-sm">Atur Harga</a>
+                                    @endcan
+                                    @can('produk_edit')
+                                        <a href="{{url('admin/produk/'. $p->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                                    @endcan
+                                    @can('produk_delete')
                                     <button class="btn btn-danger btn-sm">Hapus</button>
+                                    @endcan
                                 </form>
                                 </td>
                             </tr>

@@ -23,7 +23,7 @@
                                 <label for="">Role</label>
                                 <input type="text" name="role" class="form-control">
                             </div>
-                            <button class="btn btn-primary btn-sm">Submit</button>
+                            <button class="btn btn-primary btn-sm">Tambah </button>
                        </form>
                     </div>
                 </div>
