@@ -21,7 +21,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Setting permisssion untuk role {{$role->name}}</label>
-                                <input type="text"  name="permission" class="form-control" disabled>
+                                <input type="text"  name="permission" class="form-control" >
                             </div>
                             <button class="btn btn-primary btn-sm">Submit</button>
                         </form>

@@ -71,4 +71,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::put('/permission/{id}', 'RoleController@assignPermissionToRole');
         Route::post('/permission', 'RoleController@addNewPermission');
     });
+
+
+    Route::resource('pelanggan', 'PelangganController')->except(['show', 'update', 'create'])->middleware('permission:pelanggan_show');
 });

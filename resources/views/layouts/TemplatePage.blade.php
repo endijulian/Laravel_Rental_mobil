@@ -29,83 +29,91 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3"> Nyilih Mobile</div>
-      </a>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3"> Nyilih Mobile</div>
+        </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href={{ url('/admin/dashboard')}}>
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard </span></a>
-      </li>
-      
-      <hr class="sidebar-divider">
-
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      @can('produk_show')
-        <li class="nav-item">
-            <a class="nav-link" href={{ url('/admin/produk')}}>
-            <i class="fas fa-fw fa-table"></i>
-            <span>Produk </span></a>
+        <li class="nav-item active">
+            <a class="nav-link" href={{ url('/admin/dashboard')}}>
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard </span></a>
         </li>
-      @endcan
-
-      @can('transaksi_show')
-            <li class="nav-item">
-                <a class="nav-link" href={{ url('/admin/form-transaksi')}}>
-                <i class="fas fa-fw fa-table"></i>
-                <span>Form Transaksi </span></a>
-            </li>
-      @endcan
-
-      @can('transaksi_show')
-      <li class="nav-item">
-        <a class="nav-link" href={{ url('/admin/transaksi')}}>
-          <i class="fas fa-fw fa-table"></i>
-          <span> Transaksi </span></a>
-      </li>
-      @endcan
       
-      @can('laporan_show')
-        <li class="nav-item">
-            <a class="nav-link" href={{ url('/admin/laporan')}}>
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Laporan </span></a>
-        </li>
-      @endcan
+        <hr class="sidebar-divider">
 
+        <div class="sidebar-heading">
+            Interface
+        </div>
 
-      @can('user_show')
+        @can('produk_show')
             <li class="nav-item">
-                <a class="nav-link" href={{ url('/admin/user')}}>
+                <a class="nav-link" href={{ url('/admin/produk')}}>
                 <i class="fas fa-fw fa-table"></i>
-                <span>Manajemen User</span></a>
+                <span>Produk </span></a>
             </li>
-      @endcan
+        @endcan
 
-      @can('role_show')
-      <li class="nav-item">
-            <a class="nav-link" href={{ url('/admin/role')}}>
+        @can('pelanggan_show')
+        <li class="nav-item">
+            <a class="nav-link" href={{ url('/admin/pelanggan')}}>
             <i class="fas fa-fw fa-table"></i>
-            <span>Manajemen Role</span></a>
-      </li>
-      @endcan
+            <span>Data Pelanggan </span></a>
+        </li>
+        @endcan
 
-      <hr class="sidebar-divider d-none d-md-block">
+        @can('transaksi_show')
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url('/admin/form-transaksi')}}>
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Form Transaksi </span></a>
+                </li>
+        @endcan
 
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
+        @can('transaksi_show')
+        <li class="nav-item">
+            <a class="nav-link" href={{ url('/admin/transaksi')}}>
+            <i class="fas fa-fw fa-table"></i>
+            <span> Transaksi </span></a>
+        </li>
+        @endcan
+      
+        @can('laporan_show')
+            <li class="nav-item">
+                <a class="nav-link" href={{ url('/admin/laporan')}}>
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Laporan </span></a>
+            </li>
+        @endcan
+
+
+        @can('user_show')
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url('/admin/user')}}>
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Manajemen User</span></a>
+                </li>
+        @endcan
+
+        @can('role_show')
+        <li class="nav-item">
+                <a class="nav-link" href={{ url('/admin/role')}}>
+                <i class="fas fa-fw fa-table"></i>
+                <span>Manajemen Role</span></a>
+        </li>
+        @endcan
+
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
     </ul>
 

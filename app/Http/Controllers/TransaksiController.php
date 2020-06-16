@@ -6,6 +6,7 @@ use App\Pelanggan;
 use App\Produk;
 use App\ProdukHarga;
 use App\Transaksi;
+use App\MutasiPoin;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -167,21 +168,36 @@ class TransaksiController extends Controller
 
     public function prosesPengembalian($id)
     {
-        $transaksi = Transaksi::find($id);
-        //Logic buat menghitung denda berdasarkan tanggal kembali - tanggal pengembalian
-        $selisihHari = Carbon::now()->diffInDays($transaksi->tanggal_kembali, false);
-        // return $selisihHari;
-        if ($selisihHari < 0) {
-            $jumlahDenda =  $transaksi->harga * abs($selisihHari);
-        } else {
-            $jumlahDenda = 0;
+        try {
+            DB::beginTransaction();
+            $transaksi = Transaksi::find($id);
+            //Logic buat menghitung denda berdasarkan tanggal kembali - tanggal pengembalian
+            $selisihHari = Carbon::now()->diffInDays($transaksi->tanggal_kembali, false);
+            // return $selisihHari;
+            if ($selisihHari < 0) {
+                $jumlahDenda =  $transaksi->harga * abs($selisihHari);
+            } else {
+                $jumlahDenda = 0;
+            }
+            $transaksi->update([
+                'status' => 2,
+                'tanggal_dikembalikan' => Carbon::now(),
+                'denda' => $jumlahDenda
+            ]);
+            //Mutasi poin
+            $transaksi->pelanggan()->update(['poin' => $transaksi->pelanggan->poin + 1]);
+            MutasiPoin::create([
+                'poin' => 1,
+                'type' => 1,
+                'keterangan' => $transaksi->faktur
+            ]);
+            DB::commit();
+            return redirect()->back()->with(['success' => 'Pegembalian pinjaman berhasil diproses !']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            // return $e->getMessage();
+            return redirect()->back()->with(['error' => 'Pegembalian pinjaman gagal diproses !']);
         }
-        $transaksi->update([
-            'status' => 2,
-            'tanggal_dikembalikan' => Carbon::now(),
-            'denda' => $jumlahDenda
-        ]);
-        return redirect()->back()->with(['success' => 'Pegembalian pinjaman berhasil diproses !']);
     }
 
 
