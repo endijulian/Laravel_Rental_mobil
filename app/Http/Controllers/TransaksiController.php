@@ -187,6 +187,7 @@ class TransaksiController extends Controller
             //Mutasi poin
             $transaksi->pelanggan()->update(['poin' => $transaksi->pelanggan->poin + 1]);
             MutasiPoin::create([
+                'pelanggan_id' => $transaksi->pelanggan->id,
                 'poin' => 1,
                 'type' => 1,
                 'keterangan' => $transaksi->faktur

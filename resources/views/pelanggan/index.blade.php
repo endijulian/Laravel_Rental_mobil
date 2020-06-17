@@ -49,12 +49,12 @@
                             @forelse ($pelanggan as $key => $p)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td>{{$p->nik}}</td>
+                                <td><a href="{{url('admin/pelanggan/' .$p->id)}}">{{$p->nik}}</a></td>
                                 <td>{{$p->nama}}</td>
                                 <td>{{$p->notlp}}</td>
                                 <td>{{$p->alamat}}</td>
                                 <td>{{$p->poin}}</td>
-                                <td></td>
+                                <td>{{$p->poin_terpakai}}</td>
                                 {{-- <td>
                                 <form action="{{url('admin/produk/'. $p->id)}}" method="POST">
                                     @csrf

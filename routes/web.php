@@ -73,5 +73,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     });
 
 
-    Route::resource('pelanggan', 'PelangganController')->except(['show', 'update', 'create'])->middleware('permission:pelanggan_show');
+    Route::resource('pelanggan', 'PelangganController')->except(['edit', 'create'])->middleware('permission:pelanggan_show');
 });
