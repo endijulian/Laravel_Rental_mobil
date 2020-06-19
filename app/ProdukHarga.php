@@ -15,6 +15,11 @@ class ProdukHarga extends Model
     {
         return number_format($this->harga);
     }
+
+    public function produk()
+    {
+        return $this->belongsTo(Produk::class);
+    }
 }
 
 

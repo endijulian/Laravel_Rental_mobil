@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-});
+Route::get('/', 'FrontController@index');
+Route::get('/katalog/{id}', 'FrontController@show');
+Route::post('/katalog/pesan', 'FrontController@pesan');
 
 Auth::routes();
 

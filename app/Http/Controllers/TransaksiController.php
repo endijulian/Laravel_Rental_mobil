@@ -75,17 +75,17 @@ class TransaksiController extends Controller
             //setelah memilih dia pelanggan lama atau baru dan semua data pelanggan sudah didapat baru kita masuk ke input transaksi
 
             //generate no faktur
-            $existing = Transaksi::orderBy('created_at', 'DESC')->first(); //AMBIL FAKTUR TERAKHIR YG ADA
-            $faktur = 'JD-1'; //nilai awal faktur kalo belum ada transaksi
+            // $existing = Transaksi::orderBy('created_at', 'DESC')->first(); //AMBIL FAKTUR TERAKHIR YG ADA
+            // $faktur = 'JD-1'; //nilai awal faktur kalo belum ada transaksi
 
-            if ($existing) {
-                $explode = explode('-', $existing->faktur); //pisah berdasar - jadinya array ['JD','1']
-                $faktur = 'JD-' . ($explode[1] + 1);  //dengan menambahkan kurng buka dan tutup bisa mengatasi masalah penjumlahan integer dan string ::amazing:)
-            }
+            // if ($existing) {
+            //     $explode = explode('-', $existing->faktur); //pisah berdasar - jadinya array ['JD','1']
+            //     $faktur = 'JD-' . ($explode[1] + 1);  //dengan menambahkan kurng buka dan tutup bisa mengatasi masalah penjumlahan integer dan string ::amazing:)
+            // }
 
 
             $jaminanFile = $request->file('foto_jaminan');
-            $jaminanFileName = $faktur . '.' . $jaminanFile->getClientOriginalExtension();
+            $jaminanFileName = time().'-backend-' . '.' . $jaminanFile->getClientOriginalExtension();
             $jaminanFile->storeAs('public/transaksi', $jaminanFileName);
 
             $hargaLayanan = ProdukHarga::find($request->harga_layanan);
@@ -93,7 +93,7 @@ class TransaksiController extends Controller
             $status = $tanggalPinjam->format('Y-m-d') == Carbon::now()->format('Y-m-d') ? 1 : 0;
 
             Transaksi::create([
-                'faktur' => $faktur,
+                // 'faktur' => $faktur,
                 'pelanggan_id' => $pelanggan->id,
                 'jaminan' => $request->jaminan,
                 'foto_jaminan' => $jaminanFileName,
@@ -135,6 +135,21 @@ class TransaksiController extends Controller
                 $apaAja->whereHas('pelanggan', function ($opoManeh) {
                     $opoManeh->where('nama', 'LIKE', '%' . request()->q . '%');
                 });
+            })
+            ->when(request()->status, function ($transaksi){
+                $status = 0;
+                if (request()->status == 'pinjam') {
+                    $status = 1;
+                }
+                elseif (request()->status == 'kembali') {
+                    $status = 2;
+                }
+                elseif (request()->status == 'batal') {
+                    $status = 3;
+                } else {
+                    $status;
+                }
+                $transaksi->where('status', $status);
             })
             ->paginate(10);
         // return $transaksi;

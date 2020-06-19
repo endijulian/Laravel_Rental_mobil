@@ -60,11 +60,11 @@
 
                         <div class="col-md-6">
                             <div class="text-center">
-                                <h4> <span> Total Poin </span> </h4>
-                                <h4>{{$pelanggan->poin}}</h4>
+                                <h4> Total Poin</h4>
+                                <i class="fas fa-ticket-alt"></i><h5>{{$pelanggan->poin}}</h5>
                                 <hr>
-                                <h5>Poin digunakan </h5>
-                                <h4>{{$pelanggan->poin_terpakai}}</h4>
+                                 <h4> Poin digunakan</h4>
+                                <i class="fas fa-exclamation-circle"></i><h5>{{$pelanggan->poin_terpakai}}</h5>
                             </div>
                         </div>
 
@@ -106,11 +106,10 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="">Klaim</label>
                                     <select name="rewards" id="" class="form-control" required>
                                         <option value="">Pilih Reward</option>
                                         @foreach ($rewards as $item)
-                                        <option value="{{$item->id}}"> {{$item->title}} - {{$item->poin}}poin</option>
+                                        <option value="{{$item->id}}"> {{$item->title}} - {{$item->poin}} Poin</option>
                                         @endforeach
                                     </select>
                                     <p class="text-danger">{{$errors->first('rewards')}}</p>

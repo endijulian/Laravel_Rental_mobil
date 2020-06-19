@@ -8,6 +8,21 @@ class Transaksi extends Model
 {
     protected $table = 'transaksi';
     protected $guarded = [];
+    protected static function boot(){
+        parent::boot();
+
+        static::creating(function($transaksi){
+            $existing = Transaksi::orderBy('created_at', 'DESC')->first(); //AMBIL FAKTUR TERAKHIR YG ADA
+            $faktur = 'JD-1'; //nilai awal faktur kalo belum ada transaksi
+
+            if ($existing) {
+                $explode = explode('-', $existing->faktur); //pisah berdasar - jadinya array ['JD','1']
+                $faktur = 'JD-' . ($explode[1] + 1);  //dengan menambahkan kurng buka dan tutup bisa mengatasi masalah penjumlahan integer dan string ::amazing:)
+            }
+            $transaksi->faktur = $faktur;
+        });
+        
+    }
 
     protected $appends = 'status_label';
     protected $dates = ['tanggal_pinjam', 'tanggal_kembali', 'tanggal_dikembalikan'];
