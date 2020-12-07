@@ -15,7 +15,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">BAIDAN CAR!</h1>
                   </div>
                 <form class="user" action="{{ url('/login')}}" method="POST">
                     @csrf
@@ -40,9 +40,9 @@
                     </button>
                   </form>
                   <hr>
-                  <div class="text-center">
+                  {{--  <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
+                  </div>  --}}
                 </div>
               </div>
             </div>

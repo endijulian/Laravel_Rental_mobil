@@ -1,7 +1,7 @@
 @extends('layouts.TemplatePage')
 
 @section('title')
-    <title>List Produk - {{ $site_setting->nama_toko}}</title>
+    <title>List Mobil - {{ $site_setting->nama_toko}}</title>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Kelola Produk</h1>
+            <h1 class="h3 mb-0 text-gray-800">Kelola Mobil</h1>
             @can('produk_add')
                 <a href="{{ url('admin/produk/tambah')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-file fa-sm text-white-50"></i> Tambah Produk</a>
             @endcan

@@ -55,7 +55,7 @@
                                 <td>{{$p->alamat}}</td>
                                 <td>{{$p->poin}}</td>
                                 <td>{{$p->poin_terpakai}}</td>
-                                {{-- <td>
+                                {{--  <td>
                                 <form action="{{url('admin/produk/'. $p->id)}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
@@ -66,7 +66,7 @@
                                         <a href="{{url('admin/produk/'. $p->id)}}" class="btn btn-warning btn-sm">Edit</a>
                                     @endcan
                                 </form>
-                                </td> --}}
+                                </td>  --}}
                             </tr>
                             @empty
                             <tr>

@@ -1,7 +1,7 @@
 @extends('layouts.TemplatePage')
 
 @section('title')
-    <title>Edit Produk - {{ $site_setting->nama_toko}}</title>
+    <title>Edit Produk Mobil - {{ $site_setting->nama_toko}}</title>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 
           <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Edit Produk</h1>
+    <h1 class="h3 mb-0 text-gray-800">Edit Produk Mobil</h1>
     <a href="{{ url('admin/produk')}}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Kembali</a>
 </div>
 

@@ -18,9 +18,13 @@
             <td>{{ $transaksi->faktur}} </td>   
         </tr>
          <tr>
-             <td>No KTP</td>
+             <td>Jaminan</td>
             <td>{{ $transaksi->jaminan}} </td>
         </tr>
+        <tr>
+            <td>No KTP</td>
+           <td>{{ $transaksi->pelanggan->nik}} </td>
+       </tr>
         <tr>
              <td>Barang Pinjaman</td>
             <td>{{ $transaksi->produk->varian  .'-'.  $transaksi->produk->merk  .'-'. $transaksi->produk->plat }} </td>
